@@ -53,6 +53,6 @@ jobs:
         # The default PostgreSQL port
         POSTGRES_PORT: 5432
     - name: Codecov
-      run: bash <(curl -s https://codecov.io/bash)
-      env: 
-        CODECOV_TOKEN: "8e21875c-adb7-4f42-ab73-b11860651e8c"    
+      run: |
+        export CODECOV_TOKEN="8e21875c-adb7-4f42-ab73-b11860651e8c"
+        bash <(curl -s https://codecov.io/bash)  
