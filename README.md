@@ -1,6 +1,7 @@
 # Cookpod
 
 ![Elixir CI](https://github.com/natali-maximenko/cookpod/workflows/Elixir%20CI/badge.svg)
+[![codebeat badge](https://codebeat.co/badges/8d226992-f7e6-4931-917a-9056c63de8b8)](https://codebeat.co/projects/github-com-natali-maximenko-cookpod-feature-github-actions)
 
 To start your Phoenix server:
 
