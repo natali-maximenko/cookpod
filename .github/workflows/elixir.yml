@@ -44,7 +44,7 @@ jobs:
         mix credo --strict
         mix format --check-formatted   
     - name: Run Tests
-      run: mix test
+      run: mix coveralls
       # Environment variable used by the `client.js` script to create
       # a new PostgreSQL client.
       env:
@@ -52,3 +52,7 @@ jobs:
         POSTGRES_HOST: localhost
         # The default PostgreSQL port
         POSTGRES_PORT: 5432
+    - name: Codecov
+      run: bash <(curl -s https://codecov.io/bash)
+      env: 
+        CODECOV_TOKEN: "8e21875c-adb7-4f42-ab73-b11860651e8c"    
