@@ -1,6 +1,6 @@
 defmodule CookpodWeb.ErrorView do
   use CookpodWeb, :view
-  alias CookpodWeb.Endpoint
+  alias Phoenix.Controller
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
