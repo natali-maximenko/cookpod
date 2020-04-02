@@ -17,4 +17,4 @@ format:
 	mix format --check-formatted
 
 test:
-	mix test
+	mix coveralls

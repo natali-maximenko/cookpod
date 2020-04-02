@@ -1,5 +1,9 @@
 # Cookpod
 
+![Elixir CI](https://github.com/natali-maximenko/cookpod/workflows/Elixir%20CI/badge.svg)
+[![codebeat badge](https://codebeat.co/badges/d2b24137-cc79-477d-832f-1f5507ae775f)](https://codebeat.co/projects/github-com-natali-maximenko-cookpod-master)
+[![codecov](https://codecov.io/gh/natali-maximenko/cookpod/branch/master/graph/badge.svg)](https://codecov.io/gh/natali-maximenko/cookpod)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
