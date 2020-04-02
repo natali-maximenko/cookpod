@@ -18,6 +18,17 @@ jobs:
       with:
         elixir-version: 1.9.4 # Define the elixir version [required]
         otp-version: 22.2 # Define the OTP version [required]
+    - name: Setup PostgreSQL
+      uses: Harmon758/postgresql-action@v1.0.0
+      with:
+        # Version of PostgreSQL to use
+        postgresql version: 9.6 # optional, default is latest
+        # POSTGRES_DB - name for the default database that is created
+        postgresql db: "cookpod_test" # optional, default is 
+        # POSTGRES_USER - create the specified user with superuser power
+        # postgresql user: "postgres" # optional, default is 
+        # POSTGRES_PASSWORD - superuser password
+        # postgresql password: "postgres" # optional, default is   
     - name: Install Dependencies
       run: mix deps.get
     - name: Check Codestyle

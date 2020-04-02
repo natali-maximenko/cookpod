@@ -1,6 +1,6 @@
 # Cookpod
 
-![Build Status](https://github.com/natali-maximenko/cookpod/workflows/Elixir%20CI/badge.svg)
+![Elixir CI](https://github.com/natali-maximenko/cookpod/workflows/Elixir%20CI/badge.svg)
 
 To start your Phoenix server:
 
