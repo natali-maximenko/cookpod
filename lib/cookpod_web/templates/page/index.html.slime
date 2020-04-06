@@ -1,0 +1,26 @@
+section class="phx-hero"
+  h1 = gettext "Welcome to %{name}!", name: "Cookpod"
+
+h2 = gettext "Terms and Conditions"
+
+p = gettext "These terms and conditions outline the rules and regulations for the use of TataSoft's Website, located at cookpod.ru."
+
+p = gettext "By accessing this website we assume you accept these terms and conditions. Do not continue to use Cookpod if you do not agree to take all of the terms and conditions stated on this page."
+
+h3 = gettext "Cookies"
+
+p = gettext "We employ the use of cookies. By accessing Cookpod, you agreed to use cookies in agreement with the TataSoft's Privacy Policy."
+
+p = gettext "Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our advertising partners may also use cookies."
+
+h3 = gettext "License"
+
+p = gettext "Unless otherwise stated, TataSoft and/or its licensors own the intellectual property rights for all material on Cookpod. All intellectual property rights are reserved. You may access this from Cookpod for your own personal use subjected to restrictions set in these terms and conditions."
+
+p = gettext "You must not:"
+ul
+  li = gettext "Republish material from Cookpod"
+  li = gettext "Reproduce, duplicate or copy material from Cookpod"
+  li = gettext "Redistribute content from Cookpod"
+
+p = gettext "This Agreement shall begin on the date hereof."

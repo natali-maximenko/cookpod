@@ -1,0 +1,82 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "By accessing this website we assume you accept these terms and conditions. Do not continue to use Cookpod if you do not agree to take all of the terms and conditions stated on this page."
+msgstr "Заходя на этот сайт, мы предполагаем, что вы принимаете эти условия. Не продолжайте использовать Cookpod, если вы не согласны принять все условия, изложенные на этой странице."
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "Cookies"
+msgstr "Куки"
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "License"
+msgstr "Лицензия"
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our advertising partners may also use cookies."
+msgstr "Большинство интерактивных веб-сайтов используют файлы cookie, чтобы мы могли получать информацию о пользователях из каждого посещения. Файлы cookie используются нашим веб-сайтом для обеспечения функциональности определенных областей, чтобы облегчить людям посещение нашего веб-сайта. Некоторые из наших рекламных партнеров могут также использовать куки."
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "Redistribute content from Cookpod"
+msgstr "Распространять контент с Cookpod"
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "Reproduce, duplicate or copy material from Cookpod"
+msgstr "Воспроизведить, дублировать или копировать материалы с Cookpod"
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "Republish material from Cookpod"
+msgstr "Повторно издавать материалы с Cookpod"
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "Terms and Conditions"
+msgstr "Условия и положения"
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "These terms and conditions outline the rules and regulations for the use of TataSoft's Website, located at cookpod.ru."
+msgstr "В этих условиях изложены правила использования веб-сайта TataSoft, расположенного по адресу cookpod.ru."
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "This Agreement shall begin on the date hereof."
+msgstr "Настоящее соглашение начинает действовать прямо сейчас"
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "Unless otherwise stated, TataSoft and/or its licensors own the intellectual property rights for all material on Cookpod. All intellectual property rights are reserved. You may access this from Cookpod for your own personal use subjected to restrictions set in these terms and conditions."
+msgstr "Если не указано иное, TataSoft и / или ее лицензиары владеют правами интеллектуальной собственности на все материалы Cookpod. Все права на интеллектуальную собственность защищены. Вы можете получить доступ к этому из Cookpod для своего личного использования с учетом ограничений, установленных в этих условиях."
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "We employ the use of cookies. By accessing Cookpod, you agreed to use cookies in agreement with the TataSoft's Privacy Policy."
+msgstr "Мы используем куки. Получая доступ к Cookpod, вы соглашаетесь использовать куки в соответствии с Политикой конфиденциальности TataSoft."
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "You must not:"
+msgstr "Вы не должны:"
+
+#, elixir-format
+#: lib/cookpod_web/templates/page/index.html.slime:1
+msgid "Welcome to %{name}!"
+msgstr "Добро пожаловать в %{name}!"
