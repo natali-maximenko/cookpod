@@ -1,6 +1,8 @@
 defmodule CookpodWeb.SessionController do
   use CookpodWeb, :controller
 
+  action_fallback CookpodWeb.FallbackController
+
   def show(conn, _params) do
     current_user = get_session(conn, :current_user)
     render(conn, "show.html", current_user: current_user)
@@ -14,6 +16,7 @@ defmodule CookpodWeb.SessionController do
     case validate_user(user) do
       errors when map_size(errors) == 0 ->
         conn
+        |> put_flash(:info, "You have successfully logined!")
         |> put_session(:current_user, user["name"])
         |> assign(:current_user, user["name"])
         |> redirect(to: Routes.session_path(conn, :show, 1))
@@ -26,6 +29,7 @@ defmodule CookpodWeb.SessionController do
   def delete(conn, _params) do
     conn
     |> delete_session(:current_user)
+    |> put_flash(:info, "You have successfully logout!")
     |> redirect(to: Routes.session_path(conn, :new))
   end
 

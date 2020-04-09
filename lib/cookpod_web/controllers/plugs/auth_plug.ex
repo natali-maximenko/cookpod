@@ -1,5 +1,4 @@
 defmodule CookpodWeb.AuthPlug do
-
   import Plug.Conn, only: [get_session: 2, assign: 3]
   import Phoenix.Controller, only: [redirect: 2, put_flash: 3]
   alias CookpodWeb.Router.Helpers, as: Routes
@@ -8,11 +7,13 @@ defmodule CookpodWeb.AuthPlug do
 
   def call(conn, _opts) do
     current_user = get_session(conn, :current_user)
-    case :current_user do
+
+    case current_user do
       nil ->
         conn
         |> put_flash(:info, "You need login")
         |> redirect(to: Routes.session_path(conn, :new))
+
       _ ->
         conn
         |> assign(:current_user, current_user)
