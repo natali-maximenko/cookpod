@@ -12,6 +12,11 @@ defmodule CookpodWeb.SessinControllerTest do
     password: ""
   }
 
+  setup %{conn: conn} do
+    conn = put_req_header(conn, "authorization", "Basic dXNlcjpzZWNyZXQ=")
+    %{conn: conn}
+  end
+
   test "GET /sessions/new", %{conn: conn} do
     conn = get(conn, Routes.session_path(conn, :new))
     assert html_response(conn, 200) =~ "Log in"
