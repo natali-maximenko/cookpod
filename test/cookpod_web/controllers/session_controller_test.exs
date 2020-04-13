@@ -3,7 +3,7 @@ defmodule CookpodWeb.SessinControllerTest do
   import Plug.Test
 
   @params %{
-    name: "username",
+    email: "username",
     password: "password"
   }
 

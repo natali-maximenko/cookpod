@@ -6,7 +6,11 @@ defmodule Cookpod.AccountsTest do
   describe "users" do
     alias Cookpod.Accounts.User
 
-    @valid_attrs %{email: "some@email", password: "some password", password_confirmation: "some password"}
+    @valid_attrs %{
+      email: "some@email",
+      password: "some password",
+      password_confirmation: "some password"
+    }
     @update_attrs %{email: "some_updated@email"}
     @invalid_attrs %{email: nil, password: nil}
 

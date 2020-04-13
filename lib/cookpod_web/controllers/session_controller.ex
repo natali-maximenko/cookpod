@@ -1,5 +1,6 @@
 defmodule CookpodWeb.SessionController do
   use CookpodWeb, :controller
+  alias Cookpod.Accounts.Auth
 
   action_fallback CookpodWeb.FallbackController
 
@@ -12,18 +13,34 @@ defmodule CookpodWeb.SessionController do
     render(conn, "new.html", errors: %{})
   end
 
-  def create(conn, %{"user" => user}) do
-    case validate_user(user) do
-      errors when map_size(errors) == 0 ->
+  def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
+    result = Auth.authenticate_user(email, password)
+
+    case result do
+      {:ok, user} ->
         conn
         |> put_flash(:info, "You have successfully logined!")
-        |> put_session(:current_user, user["name"])
-        |> assign(:current_user, user["name"])
+        |> put_session(:current_user, user)
+        |> assign(:current_user, user)
         |> redirect(to: Routes.session_path(conn, :show, 1))
 
-      errors ->
-        render(conn, "new.html", errors: errors)
+      {:error, msg} ->
+        conn
+        |> put_flash(:info, msg)
+        |> redirect(to: Routes.session_path(conn, :new))
     end
+
+    # case validate_user(user) do
+    #   errors when map_size(errors) == 0 ->
+    #     conn
+    #     |> put_flash(:info, "You have successfully logined!")
+    #     |> put_session(:current_user, user["name"])
+    #     |> assign(:current_user, user["name"])
+    #     |> redirect(to: Routes.session_path(conn, :show, 1))
+
+    #   errors ->
+    #     render(conn, "new.html", errors: errors)
+    # end
   end
 
   def delete(conn, _params) do
