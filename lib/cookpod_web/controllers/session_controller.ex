@@ -14,9 +14,7 @@ defmodule CookpodWeb.SessionController do
   end
 
   def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
-    result = Auth.authenticate_user(email, password)
-
-    case result do
+    case Auth.authenticate_user(email, password) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "You have successfully logined!")
@@ -29,18 +27,6 @@ defmodule CookpodWeb.SessionController do
         |> put_flash(:info, msg)
         |> redirect(to: Routes.session_path(conn, :new))
     end
-
-    # case validate_user(user) do
-    #   errors when map_size(errors) == 0 ->
-    #     conn
-    #     |> put_flash(:info, "You have successfully logined!")
-    #     |> put_session(:current_user, user["name"])
-    #     |> assign(:current_user, user["name"])
-    #     |> redirect(to: Routes.session_path(conn, :show, 1))
-
-    #   errors ->
-    #     render(conn, "new.html", errors: errors)
-    # end
   end
 
   def delete(conn, _params) do
@@ -48,12 +34,5 @@ defmodule CookpodWeb.SessionController do
     |> delete_session(:current_user)
     |> put_flash(:info, "You have successfully logout!")
     |> redirect(to: Routes.session_path(conn, :new))
-  end
-
-  defp validate_user(user) do
-    user
-    |> Enum.reduce(%{}, fn {name, value}, acc ->
-      if String.length(value) == 0, do: Map.put(acc, name, "#{name} cannot be blank"), else: acc
-    end)
   end
 end
