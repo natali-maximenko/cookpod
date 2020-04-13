@@ -12,14 +12,22 @@ html lang="en"
       section.container
         nav role="navigation"
           ul
+          = if @conn.assigns[:current_user] do
+            li =link "Log out", to: Routes.session_path(@conn, :delete, 1), method: :delete
+          - else
             li
-              a href="https://hexdocs.pm/phoenix/overview.html" Get Started
+              a href=Routes.session_path(@conn, :new) Log in   
         a.phx-logo href="http://phoenixframework.org/"
           img src="#{ Routes.static_path(@conn, "/images/phoenix.png") }" alt="Phoenix Framework Logo"
 
     main.container role="main"
       p.alert.alert-info role="alert"= get_flash(@conn, :info)
       p.alert.alert-danger role="alert"= get_flash(@conn, :error)
+      section class="phx-hero"
+        = if @conn.assigns[:current_user] do
+          h1 = "Welcome #{@conn.assigns[:current_user]}!" 
+        - else
+          h1 You are not logged in  
       = render @view_module, @view_template, assigns
 
     script type="text/javascript" src="#{Routes.static_path(@conn, "/js/app.js")}"

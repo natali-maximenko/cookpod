@@ -14,7 +14,7 @@ credo:
 	mix credo --strict
 
 format:
-	mix format --check-formatted
+	mix format
 
 test:
 	mix coveralls
