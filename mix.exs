@@ -41,6 +41,7 @@ defmodule Cookpod.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.0"},
       {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.4"},
       {:excoveralls, "~> 0.10", only: :test},

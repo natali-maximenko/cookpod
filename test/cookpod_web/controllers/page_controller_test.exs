@@ -1,6 +1,7 @@
 defmodule CookpodWeb.PageControllerTest do
   use CookpodWeb.ConnCase
   import Plug.Test
+  alias Cookpod.Accounts
 
   def with_valid_authorization_header(conn) do
     conn
@@ -10,6 +11,17 @@ defmodule CookpodWeb.PageControllerTest do
   def with_invalid_authorization_header(conn) do
     conn
     |> put_req_header("authorization", "Basic Knock knock neo")
+  end
+
+  setup %{conn: conn} do
+    {:ok, user} =
+      Accounts.create_user(%{
+        email: "username@cookpod.ru",
+        password: "password",
+        password_confirmation: "password"
+      })
+
+    %{conn: conn, user: user}
   end
 
   describe "GET index page /" do
@@ -62,14 +74,14 @@ defmodule CookpodWeb.PageControllerTest do
       refute conn.assigns[:current_user]
     end
 
-    test "loggined user with basic auth", %{conn: conn} do
+    test "loggined user with basic auth", %{conn: conn, user: user} do
       conn =
         conn
         |> with_valid_authorization_header()
-        |> init_test_session(current_user: "username")
+        |> init_test_session(current_user: user)
         |> get(Routes.page_path(conn, :terms))
 
-      assert html_response(conn, 200) =~ "Welcome username!"
+      assert html_response(conn, 200) =~ "Welcome username@cookpod.ru!"
       assert html_response(conn, 200) =~ "Условия и положения"
       assert conn.assigns[:current_user]
     end

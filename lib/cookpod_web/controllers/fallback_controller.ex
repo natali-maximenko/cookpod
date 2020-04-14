@@ -15,4 +15,12 @@ defmodule CookpodWeb.FallbackController do
     |> put_view(ErrorView)
     |> render(:"403")
   end
+
+  def call(conn, {:error, message}) do
+    conn
+    |> put_status(422)
+    |> put_flash(:info, message)
+    |> put_view(ErrorView)
+    |> render(:"422")
+  end
 end

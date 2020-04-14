@@ -9,3 +9,16 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+alias Cookpod.Accounts
+alias Cookpod.Repo
+
+existed_user = Repo.get_by(Accounts.User, email: "admin@cookpod.ru")
+
+if is_nil(existed_user) do
+  {:ok, _} =
+    Accounts.create_user(%{
+      email: "admin@cookpod.ru",
+      password: "admin",
+      password_confirmation: "admin"
+    })
+end

@@ -25,7 +25,7 @@ html lang="en"
       p.alert.alert-danger role="alert"= get_flash(@conn, :error)
       section class="phx-hero"
         = if @conn.assigns[:current_user] do
-          h1 = "Welcome #{@conn.assigns[:current_user]}!" 
+          h1 = "Welcome #{@conn.assigns[:current_user].email}!" 
         - else
           h1 You are not logged in  
       = render @view_module, @view_template, assigns

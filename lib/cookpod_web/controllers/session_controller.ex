@@ -1,5 +1,6 @@
 defmodule CookpodWeb.SessionController do
   use CookpodWeb, :controller
+  alias Cookpod.Accounts.Auth
 
   action_fallback CookpodWeb.FallbackController
 
@@ -12,17 +13,19 @@ defmodule CookpodWeb.SessionController do
     render(conn, "new.html", errors: %{})
   end
 
-  def create(conn, %{"user" => user}) do
-    case validate_user(user) do
-      errors when map_size(errors) == 0 ->
+  def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
+    case Auth.authenticate_user(email, password) do
+      {:ok, user} ->
         conn
         |> put_flash(:info, "You have successfully logined!")
-        |> put_session(:current_user, user["name"])
-        |> assign(:current_user, user["name"])
+        |> put_session(:current_user, user)
+        |> assign(:current_user, user)
         |> redirect(to: Routes.session_path(conn, :show, 1))
 
-      errors ->
-        render(conn, "new.html", errors: errors)
+      {:error, msg} ->
+        conn
+        |> put_flash(:info, msg)
+        |> redirect(to: Routes.session_path(conn, :new))
     end
   end
 
@@ -31,12 +34,5 @@ defmodule CookpodWeb.SessionController do
     |> delete_session(:current_user)
     |> put_flash(:info, "You have successfully logout!")
     |> redirect(to: Routes.session_path(conn, :new))
-  end
-
-  defp validate_user(user) do
-    user
-    |> Enum.reduce(%{}, fn {name, value}, acc ->
-      if String.length(value) == 0, do: Map.put(acc, name, "#{name} cannot be blank"), else: acc
-    end)
   end
 end
