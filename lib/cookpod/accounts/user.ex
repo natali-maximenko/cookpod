@@ -22,9 +22,21 @@ defmodule Cookpod.Accounts.User do
     |> validate_required(@required)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 4)
+    |> validate_change(:email, &validate_email/2)
     |> validate_confirmation(:password)
     |> unique_constraint(:email)
     |> put_password_hash()
+  end
+
+  defp validate_email(_, value) do
+    [_, domain] = String.split(value, ~r/@/)
+    servers = :inet_res.lookup(domain, :in, :mx)
+
+    if Enum.empty?(servers) do
+      [title: "not valid email"]
+    else
+      []
+    end
   end
 
   defp put_password_hash(
