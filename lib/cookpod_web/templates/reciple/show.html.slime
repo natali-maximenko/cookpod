@@ -1,0 +1,15 @@
+h1 Show Reciple
+
+ul
+  li
+    strong Title:&nbsp;
+    = @reciple.title
+  li
+    strong Description:&nbsp;
+    = @reciple.description
+  li
+    strong Image:&nbsp;
+    = @reciple.image
+
+span= link "Edit", to: Routes.reciple_path(@conn, :edit, @reciple)
+span= link "Back", to: Routes.reciple_path(@conn, :index)

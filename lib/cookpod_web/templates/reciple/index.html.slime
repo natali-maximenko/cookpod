@@ -1,0 +1,21 @@
+h1 Listing Reciples
+
+table
+  thead
+    tr
+      th Title
+      th Description
+      th Image
+      th
+  tbody
+    = for reciple <- @reciples do
+      tr
+        td= reciple.title
+        td= reciple.description
+        td= reciple.image
+        td class="text-right"
+          = link "Show", to: Routes.reciple_path(@conn, :show, reciple)
+          = link "Edit", to: Routes.reciple_path(@conn, :edit, reciple)
+          = link "Delete", to: Routes.reciple_path(@conn, :delete, reciple), method: :delete, data: [confirm: "Are you sure?"]
+
+span= link "New Reciple", to: Routes.reciple_path(@conn, :new)
