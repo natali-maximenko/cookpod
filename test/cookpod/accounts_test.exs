@@ -7,11 +7,11 @@ defmodule Cookpod.AccountsTest do
     alias Cookpod.Accounts.User
 
     @valid_attrs %{
-      email: "some@email",
+      email: "some@yandex.ru",
       password: "some password",
       password_confirmation: "some password"
     }
-    @update_attrs %{email: "some_updated@email"}
+    @update_attrs %{email: "some_updated@yandex.ru"}
     @invalid_attrs %{email: nil, password: nil}
 
     def user_fixture(attrs \\ %{}) do
@@ -37,7 +37,7 @@ defmodule Cookpod.AccountsTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
-      assert user.email == "some@email"
+      assert user.email == "some@yandex.ru"
       assert user.password == "some password"
     end
 
@@ -48,7 +48,7 @@ defmodule Cookpod.AccountsTest do
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
       assert {:ok, %User{} = user} = Accounts.update_user(user, @update_attrs)
-      assert user.email == "some_updated@email"
+      assert user.email == "some_updated@yandex.ru"
     end
 
     test "update_user/2 with invalid data returns error changeset" do

@@ -16,7 +16,7 @@ defmodule CookpodWeb.PageControllerTest do
   setup %{conn: conn} do
     {:ok, user} =
       Accounts.create_user(%{
-        email: "username@cookpod.ru",
+        email: "username@yandex.ru",
         password: "password",
         password_confirmation: "password"
       })
@@ -81,7 +81,7 @@ defmodule CookpodWeb.PageControllerTest do
         |> init_test_session(current_user: user)
         |> get(Routes.page_path(conn, :terms))
 
-      assert html_response(conn, 200) =~ "Welcome username@cookpod.ru!"
+      assert html_response(conn, 200) =~ "Welcome username@yandex.ru!"
       assert html_response(conn, 200) =~ "Условия и положения"
       assert conn.assigns[:current_user]
     end

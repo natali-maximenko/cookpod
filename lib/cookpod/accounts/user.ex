@@ -30,6 +30,7 @@ defmodule Cookpod.Accounts.User do
 
   defp validate_email(_, value) do
     [_, domain] = String.split(value, ~r/@/)
+    domain = String.to_charlist(domain)
     servers = :inet_res.lookup(domain, :in, :mx)
 
     if Enum.empty?(servers) do
