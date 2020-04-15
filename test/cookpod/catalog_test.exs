@@ -6,10 +6,9 @@ defmodule Cookpod.CatalogTest do
   describe "reciples" do
     alias Cookpod.Catalog.Reciple
 
-    @valid_attrs %{description: "some description", image: "some image", title: "some title"}
+    @valid_attrs %{description: "some description", title: "some title"}
     @update_attrs %{
       description: "some updated description",
-      image: "some updated image",
       title: "some updated title"
     }
     @invalid_attrs %{description: nil, image: nil, title: nil}
@@ -36,7 +35,6 @@ defmodule Cookpod.CatalogTest do
     test "create_reciple/1 with valid data creates a reciple" do
       assert {:ok, %Reciple{} = reciple} = Catalog.create_reciple(@valid_attrs)
       assert reciple.description == "some description"
-      assert reciple.image == "some image"
       assert reciple.title == "some title"
     end
 
@@ -48,7 +46,6 @@ defmodule Cookpod.CatalogTest do
       reciple = reciple_fixture()
       assert {:ok, %Reciple{} = reciple} = Catalog.update_reciple(reciple, @update_attrs)
       assert reciple.description == "some updated description"
-      assert reciple.image == "some updated image"
       assert reciple.title == "some updated title"
     end
 
