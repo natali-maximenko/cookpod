@@ -36,10 +36,17 @@ defmodule Cookpod.CatalogTest do
       assert {:ok, %Reciple{} = reciple} = Catalog.create_reciple(@valid_attrs)
       assert reciple.description == "some description"
       assert reciple.title == "some title"
+      assert reciple.state == "draft"
     end
 
     test "create_reciple/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Catalog.create_reciple(@invalid_attrs)
+    end
+
+    test "publish_reciple/1 updates the reciple state" do
+      reciple = reciple_fixture()
+      assert {:ok, %Reciple{} = reciple} = Catalog.publish_reciple(reciple)
+      assert reciple.state == "published"
     end
 
     test "update_reciple/2 with valid data updates the reciple" do

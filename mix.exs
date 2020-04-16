@@ -47,6 +47,7 @@ defmodule Cookpod.MixProject do
       {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.4"},
       {:excoveralls, "~> 0.10", only: :test},
+      {:fsm, "~> 0.3.1"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:phoenix, "~> 1.4.16"},

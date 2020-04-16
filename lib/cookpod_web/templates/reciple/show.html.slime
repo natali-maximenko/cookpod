@@ -8,6 +8,9 @@ ul
     strong Description:&nbsp;
     = @reciple.description
   li
+    strong State:&nbsp;
+    = @reciple.state  
+  li
     strong Image:&nbsp;
     = img_tag(image_url(@reciple), class: "image")
 

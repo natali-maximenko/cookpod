@@ -121,6 +121,23 @@ defmodule CookpodWeb.RecipleControllerTest do
     end
   end
 
+  describe "publish reciple" do
+    setup [:create_reciple]
+
+    test "updates state", %{conn: conn, user: user, reciple: reciple} do
+      conn =
+        conn
+        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
+        |> init_test_session(current_user: user)
+
+      conn = put(conn, Routes.reciple_path(conn, :publish, reciple))
+      assert redirected_to(conn) == Routes.reciple_path(conn, :show, reciple)
+
+      conn = get(conn, Routes.reciple_path(conn, :show, reciple))
+      assert html_response(conn, 200) =~ "published"
+    end
+  end
+
   describe "delete reciple" do
     setup [:create_reciple]
 

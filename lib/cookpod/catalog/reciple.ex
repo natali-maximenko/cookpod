@@ -9,6 +9,7 @@ defmodule Cookpod.Catalog.Reciple do
     field :description, :string
     field :image, Image.Type
     field :title, :string
+    field :state, :string
 
     timestamps()
   end
@@ -16,9 +17,9 @@ defmodule Cookpod.Catalog.Reciple do
   @doc false
   def changeset(reciple, attrs) do
     reciple
-    |> cast(attrs, [:title, :description])
+    |> cast(attrs, [:title, :description, :state])
     |> cast_attachments(attrs, [:image])
-    |> validate_required([:title, :description])
+    |> validate_required([:title, :description, :state])
     |> unique_constraint(:title)
   end
 end

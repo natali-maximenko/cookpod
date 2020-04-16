@@ -26,6 +26,17 @@ defmodule CookpodWeb.RecipleController do
     end
   end
 
+  def publish(conn, %{"id" => id}) do
+    reciple = Catalog.get_reciple!(id)
+
+    case Catalog.publish_reciple(reciple) do
+      {:ok, reciple} ->
+        conn
+        |> put_flash(:info, "Reciple updated successfully.")
+        |> redirect(to: Routes.reciple_path(conn, :show, reciple))
+    end
+  end
+
   def show(conn, %{"id" => id}) do
     reciple = Catalog.get_reciple!(id)
     render(conn, "show.html", reciple: reciple)
