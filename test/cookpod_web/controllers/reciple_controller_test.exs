@@ -5,10 +5,9 @@ defmodule CookpodWeb.RecipleControllerTest do
   alias Cookpod.Accounts
   alias Cookpod.Catalog
 
-  @create_attrs %{description: "some description", image: "some image", title: "some title"}
+  @create_attrs %{description: "some description", title: "some title"}
   @update_attrs %{
     description: "some updated description",
-    image: "some updated image",
     title: "some updated title"
   }
   @invalid_attrs %{description: nil, image: nil, title: nil}
