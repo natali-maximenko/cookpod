@@ -34,6 +34,8 @@ defmodule CookpodWeb.Router do
     pipe_through [:browser, :auth]
 
     get "/terms", PageController, :terms
+    resources "/reciples", RecipleController
+    put "/reciples/:id/publish", RecipleController, :publish
   end
 
   # Other scopes may use custom stacks.

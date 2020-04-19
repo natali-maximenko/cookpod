@@ -1,0 +1,5 @@
+h1 Edit Reciple
+
+= render "form.html", Map.put(assigns, :action, Routes.reciple_path(@conn, :update, @reciple))
+
+span= link "Back", to: Routes.reciple_path(@conn, :index)

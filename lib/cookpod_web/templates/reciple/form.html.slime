@@ -1,0 +1,15 @@
+= form_for @changeset, @action, [multipart: true], fn f ->
+  = if @changeset.action do
+    .alert.alert-danger
+      p Oops, something went wrong! Please check the errors below.
+  = label f, :title, class: "control-label"
+  = text_input f, :title, class: "form-control"
+  = error_tag f, :title
+  = label f, :description, class: "control-label"
+  = textarea f, :description, class: "form-control"
+  = error_tag f, :description
+  = label f, :image, class: "control-label"
+  = file_input f, :image, class: "form-control"
+  = error_tag f, :image
+  div
+    = submit "Submit"

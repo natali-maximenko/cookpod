@@ -13,9 +13,5 @@ defmodule Cookpod.Accounts.Auth do
 
   defp check_password(user, plain_text_password) do
     Bcrypt.check_pass(user, plain_text_password)
-    # case Bcrypt.checkpw(plain_text_password, user.password) do
-    #   true -> {:ok, user}
-    #   false -> {:error, "Incorrect email or password"}
-    # end
   end
 end
