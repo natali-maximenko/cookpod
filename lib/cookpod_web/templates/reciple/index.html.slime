@@ -12,7 +12,7 @@ table
       tr
         td= reciple.title
         td= reciple.description
-        td= Cookpod.Catalog.Image.url({reciple.image, reciple}, :thumb) 
+        td= img_tag(image_url(reciple, :thumb), class: "iamge") 
         td class="text-right"
           = link "Show", to: Routes.reciple_path(@conn, :show, reciple)
           = link "Edit", to: Routes.reciple_path(@conn, :edit, reciple)

@@ -1,6 +1,4 @@
 defmodule Cookpod.Catalog.RecipleQueries do
-  import Ecto.Query, warn: false
-
   alias Cookpod.Catalog.Reciple
   alias Cookpod.Catalog.RecipleFsm
   alias Cookpod.Repo
