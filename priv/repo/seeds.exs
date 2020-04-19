@@ -12,12 +12,12 @@
 alias Cookpod.Accounts
 alias Cookpod.Repo
 
-existed_user = Repo.get_by(Accounts.User, email: "admin@cookpod.ru")
+existed_user = Repo.get_by(Accounts.User, email: "admin@cookpod.com")
 
 if is_nil(existed_user) do
   {:ok, _} =
     Accounts.create_user(%{
-      email: "admin@cookpod.ru",
+      email: "admin@cookpod.com",
       password: "admin",
       password_confirmation: "admin"
     })
