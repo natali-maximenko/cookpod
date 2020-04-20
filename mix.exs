@@ -8,7 +8,7 @@ defmodule Cookpod.MixProject do
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       elixir_options: [warnings_as_errors: true],
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers() ++ [:phoenix_swagger],
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
@@ -47,6 +47,7 @@ defmodule Cookpod.MixProject do
       {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.4"},
       {:excoveralls, "~> 0.10", only: :test},
+      {:ex_json_schema, "~> 0.5"},
       {:fsm, "~> 0.3.1"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
@@ -56,6 +57,7 @@ defmodule Cookpod.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_slime, "~> 0.13.1"},
+      {:phoenix_swagger, "~> 0.8"},
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"}
     ]

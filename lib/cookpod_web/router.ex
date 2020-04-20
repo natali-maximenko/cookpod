@@ -46,6 +46,19 @@ defmodule CookpodWeb.Router do
     resources "/reciples", RecipleController, only: [:index, :show]
   end
 
+  scope "/api/swagger" do
+    forward("/", PhoenixSwagger.Plug.SwaggerUI, otp_app: :cookpod, swagger_file: "swagger.json")
+  end
+
+  def swagger_info do
+    %{
+      info: %{
+        version: "0.1.0",
+        title: "Cookpod"
+      }
+    }
+  end
+
   def handle_errors(conn, %{kind: :error, reason: %Phoenix.Router.NoRouteError{}}) do
     conn
     |> fetch_session()

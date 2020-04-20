@@ -13,6 +13,7 @@ defmodule CookpodWeb.Api.RecipleView do
 
   def render("reciple.json", %{reciple: reciple}) do
     %{
+      id: reciple.id,
       title: reciple.title,
       description: reciple.description,
       image: Image.url({reciple.image, reciple})

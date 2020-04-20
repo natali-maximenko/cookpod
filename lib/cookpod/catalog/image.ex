@@ -20,7 +20,7 @@ defmodule Cookpod.Catalog.Image do
     version
   end
 
-  def asset_host, do: System.get_env("ASSET_HOST")
+  def asset_host, do: "http://localhost:4000"
 
   def storage_dir(_, {_, scope}) do
     "uploads/reciple/images/#{scope.id}"

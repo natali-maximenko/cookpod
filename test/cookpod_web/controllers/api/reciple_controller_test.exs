@@ -13,13 +13,14 @@ defmodule CookpodWeb.Api.RecipleControllerTest do
   describe "index" do
     setup [:create_reciple]
 
-    test "lists all reciples", %{conn: conn} do
+    test "lists all reciples", %{conn: conn, reciple: reciple} do
       conn =
         conn
         |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
 
       expected = [
         %{
+          "id" => reciple.id,
           "description" => "some description",
           "image" => "/images/reciples/default_original.png",
           "title" => "some title"
@@ -44,6 +45,7 @@ defmodule CookpodWeb.Api.RecipleControllerTest do
       assert response = json_response(conn, 200)
 
       expected = %{
+        "id" => reciple.id,
         "description" => "some description",
         "image" => "/images/reciples/default_original.png",
         "title" => "some title"
