@@ -56,11 +56,13 @@ defmodule CookpodWeb.Api.RecipleController do
         %{
           id: 1,
           title: "Cake",
+          image: "url",
           description: "sweet cake"
         },
         %{
           id: 2,
           title: "Tea",
+          image: "url",
           description: "sweet green tea"
         }
       ]

@@ -1,5 +1,6 @@
 defmodule CookpodWeb.Api.RecipleControllerTest do
-  use CookpodWeb.ConnCase
+  use CookpodWeb.ConnCase, async: true
+  use PhoenixSwagger.SchemaTest, "priv/static/swagger.json"
 
   alias Cookpod.Catalog
 
@@ -13,45 +14,30 @@ defmodule CookpodWeb.Api.RecipleControllerTest do
   describe "index" do
     setup [:create_reciple]
 
-    test "lists all reciples", %{conn: conn, reciple: reciple} do
+    test "lists all reciples", %{conn: conn, swagger_schema: schema} do
       conn =
         conn
         |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
 
-      expected = [
-        %{
-          "id" => reciple.id,
-          "description" => "some description",
-          "image" => "/images/reciples/default_original.png",
-          "title" => "some title"
-        }
-      ]
-
-      conn = get(conn, Routes.api_reciple_path(conn, :index))
-      assert response = json_response(conn, 200)
-      assert expected == response
+      conn
+      |> get(Routes.api_reciple_path(conn, :index))
+      |> validate_resp_schema(schema, "ReciplesResponse")
+      |> json_response(200)
     end
   end
 
   describe "show reciple" do
     setup [:create_reciple]
 
-    test "get reciple", %{conn: conn, reciple: reciple} do
+    test "get reciple", %{conn: conn, reciple: reciple, swagger_schema: schema} do
       conn =
         conn
         |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
 
-      conn = get(conn, Routes.api_reciple_path(conn, :show, reciple))
-      assert response = json_response(conn, 200)
-
-      expected = %{
-        "id" => reciple.id,
-        "description" => "some description",
-        "image" => "/images/reciples/default_original.png",
-        "title" => "some title"
-      }
-
-      assert expected == response
+      conn
+      |> get(Routes.api_reciple_path(conn, :show, reciple))
+      |> validate_resp_schema(schema, "RecipleResponse")
+      |> json_response(200)
     end
   end
 

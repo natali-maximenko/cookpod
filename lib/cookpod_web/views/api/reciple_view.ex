@@ -4,7 +4,7 @@ defmodule CookpodWeb.Api.RecipleView do
   alias Cookpod.Catalog.Image
 
   def render("index.json", %{reciples: reciples}) do
-    render_many(reciples, __MODULE__, "reciple.json")
+    %{data: render_many(reciples, __MODULE__, "reciple.json")}
   end
 
   def render("show.json", %{reciple: reciple}) do
