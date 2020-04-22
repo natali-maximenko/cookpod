@@ -11,40 +11,26 @@ defmodule CookpodWeb.RecipleControllerTest do
 
   setup %{conn: conn} do
     user = insert(:user)
-    %{conn: conn, user: user}
+    conn = as_user(conn, user)
+    %{conn: conn}
   end
 
   describe "index" do
-    test "lists all reciples", %{conn: conn, user: user} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-        |> init_test_session(current_user: user)
-
+    test "lists all reciples", %{conn: conn} do
       conn = get(conn, Routes.reciple_path(conn, :index))
       assert html_response(conn, 200) =~ "Listing Reciples"
     end
   end
 
   describe "new reciple" do
-    test "renders form", %{conn: conn, user: user} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-        |> init_test_session(current_user: user)
-
+    test "renders form", %{conn: conn} do
       conn = get(conn, Routes.reciple_path(conn, :new))
       assert html_response(conn, 200) =~ "New Reciple"
     end
   end
 
   describe "create reciple" do
-    test "redirects to show when data is valid", %{conn: conn, user: user} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-        |> init_test_session(current_user: user)
-
+    test "redirects to show when data is valid", %{conn: conn} do
       conn = post(conn, Routes.reciple_path(conn, :create), reciple: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
@@ -54,12 +40,7 @@ defmodule CookpodWeb.RecipleControllerTest do
       assert html_response(conn, 200) =~ "Show Reciple"
     end
 
-    test "renders errors when data is invalid", %{conn: conn, user: user} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-        |> init_test_session(current_user: user)
-
+    test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, Routes.reciple_path(conn, :create), reciple: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Reciple"
     end
@@ -68,12 +49,7 @@ defmodule CookpodWeb.RecipleControllerTest do
   describe "edit reciple" do
     setup [:create_reciple]
 
-    test "renders form for editing chosen reciple", %{conn: conn, user: user, reciple: reciple} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-        |> init_test_session(current_user: user)
-
+    test "renders form for editing chosen reciple", %{conn: conn, reciple: reciple} do
       conn = get(conn, Routes.reciple_path(conn, :edit, reciple))
       assert html_response(conn, 200) =~ "Edit Reciple"
     end
@@ -82,12 +58,7 @@ defmodule CookpodWeb.RecipleControllerTest do
   describe "update reciple" do
     setup [:create_reciple]
 
-    test "redirects when data is valid", %{conn: conn, user: user, reciple: reciple} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-        |> init_test_session(current_user: user)
-
+    test "redirects when data is valid", %{conn: conn, reciple: reciple} do
       conn = put(conn, Routes.reciple_path(conn, :update, reciple), reciple: @update_attrs)
       assert redirected_to(conn) == Routes.reciple_path(conn, :show, reciple)
 
@@ -95,12 +66,7 @@ defmodule CookpodWeb.RecipleControllerTest do
       assert html_response(conn, 200) =~ "some updated description"
     end
 
-    test "renders errors when data is invalid", %{conn: conn, user: user, reciple: reciple} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-        |> init_test_session(current_user: user)
-
+    test "renders errors when data is invalid", %{conn: conn, reciple: reciple} do
       conn = put(conn, Routes.reciple_path(conn, :update, reciple), reciple: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Reciple"
     end
@@ -109,12 +75,7 @@ defmodule CookpodWeb.RecipleControllerTest do
   describe "publish reciple" do
     setup [:create_reciple]
 
-    test "updates state", %{conn: conn, user: user, reciple: reciple} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-        |> init_test_session(current_user: user)
-
+    test "updates state", %{conn: conn, reciple: reciple} do
       conn = put(conn, Routes.reciple_path(conn, :publish, reciple))
       assert redirected_to(conn) == Routes.reciple_path(conn, :show, reciple)
 
@@ -126,12 +87,7 @@ defmodule CookpodWeb.RecipleControllerTest do
   describe "delete reciple" do
     setup [:create_reciple]
 
-    test "deletes chosen reciple", %{conn: conn, user: user, reciple: reciple} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-        |> init_test_session(current_user: user)
-
+    test "deletes chosen reciple", %{conn: conn, reciple: reciple} do
       conn = delete(conn, Routes.reciple_path(conn, :delete, reciple))
       assert redirected_to(conn) == Routes.reciple_path(conn, :index)
 

@@ -2,11 +2,6 @@ defmodule CookpodWeb.PageControllerTest do
   use CookpodWeb.ConnCase
   import Plug.Test
 
-  def with_valid_authorization_header(conn) do
-    conn
-    |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-  end
-
   def with_invalid_authorization_header(conn) do
     conn
     |> put_req_header("authorization", "Basic Knock knock neo")
@@ -70,8 +65,7 @@ defmodule CookpodWeb.PageControllerTest do
     test "loggined user with basic auth", %{conn: conn, user: user} do
       conn =
         conn
-        |> with_valid_authorization_header()
-        |> init_test_session(current_user: user)
+        |> as_user(user)
         |> get(Routes.page_path(conn, :terms))
 
       assert html_response(conn, 200) =~ "Welcome #{user.email}!"

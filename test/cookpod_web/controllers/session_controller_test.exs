@@ -8,7 +8,7 @@ defmodule CookpodWeb.SessinControllerTest do
   }
 
   setup %{conn: conn} do
-    conn = put_req_header(conn, "authorization", "Basic dXNlcjpzZWNyZXQ=")
+    conn = with_valid_authorization_header(conn)
     user = insert(:user)
 
     %{conn: conn, user: user}
