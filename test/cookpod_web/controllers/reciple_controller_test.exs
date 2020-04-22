@@ -2,9 +2,6 @@ defmodule CookpodWeb.RecipleControllerTest do
   use CookpodWeb.ConnCase
   import Plug.Test
 
-  alias Cookpod.Accounts
-  alias Cookpod.Catalog
-
   @create_attrs %{description: "some description", title: "some title"}
   @update_attrs %{
     description: "some updated description",
@@ -13,19 +10,8 @@ defmodule CookpodWeb.RecipleControllerTest do
   @invalid_attrs %{description: nil, image: nil, title: nil}
 
   setup %{conn: conn} do
-    {:ok, user} =
-      Accounts.create_user(%{
-        email: "username@yandex.ru",
-        password: "password",
-        password_confirmation: "password"
-      })
-
+    user = insert(:user)
     %{conn: conn, user: user}
-  end
-
-  def fixture(:reciple) do
-    {:ok, reciple} = Catalog.create_reciple(@create_attrs)
-    reciple
   end
 
   describe "index" do
@@ -156,7 +142,7 @@ defmodule CookpodWeb.RecipleControllerTest do
   end
 
   defp create_reciple(_) do
-    reciple = fixture(:reciple)
+    reciple = insert(:reciple)
     {:ok, reciple: reciple}
   end
 end

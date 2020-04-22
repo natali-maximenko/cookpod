@@ -1,12 +1,6 @@
 defmodule CookpodWeb.SessinControllerTest do
   use CookpodWeb.ConnCase
   import Plug.Test
-  alias Cookpod.Accounts
-
-  @params %{
-    email: "username@yandex.ru",
-    password: "password"
-  }
 
   @invalid_params %{
     email: "username",
@@ -15,13 +9,7 @@ defmodule CookpodWeb.SessinControllerTest do
 
   setup %{conn: conn} do
     conn = put_req_header(conn, "authorization", "Basic dXNlcjpzZWNyZXQ=")
-
-    {:ok, user} =
-      Accounts.create_user(%{
-        email: "username@yandex.ru",
-        password: "password",
-        password_confirmation: "password"
-      })
+    user = insert(:user)
 
     %{conn: conn, user: user}
   end
@@ -31,12 +19,17 @@ defmodule CookpodWeb.SessinControllerTest do
     assert html_response(conn, 200) =~ "Log in"
   end
 
-  test "POST /sessions", %{conn: conn} do
-    conn = post(conn, Routes.session_path(conn, :create, user: @params))
+  test "POST /sessions", %{conn: conn, user: user} do
+    params = %{
+      email: user.email,
+      password: "password"
+    }
+
+    conn = post(conn, Routes.session_path(conn, :create, user: params))
 
     assert redirected_to(conn) == "/sessions/1"
     assert get_flash(conn, :info) == "You have successfully logined!"
-    assert conn.assigns[:current_user].email == "username@yandex.ru"
+    assert conn.assigns[:current_user].email == user.email
   end
 
   test "POST /sessions with invalid params", %{conn: conn} do
@@ -52,7 +45,7 @@ defmodule CookpodWeb.SessinControllerTest do
       |> init_test_session(current_user: user)
       |> get(Routes.session_path(conn, :show, 1))
 
-    assert html_response(conn, 200) =~ "You are logged in as username@yandex.ru"
+    assert html_response(conn, 200) =~ "You are logged in as #{user.email}"
     assert html_response(conn, 200) =~ "Log out"
   end
 

@@ -22,6 +22,7 @@ defmodule CookpodWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       alias CookpodWeb.Router.Helpers, as: Routes
+      import Cookpod.Factory
 
       # The default endpoint for testing
       @endpoint CookpodWeb.Endpoint

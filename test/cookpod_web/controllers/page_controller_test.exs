@@ -1,7 +1,6 @@
 defmodule CookpodWeb.PageControllerTest do
   use CookpodWeb.ConnCase
   import Plug.Test
-  alias Cookpod.Accounts
 
   def with_valid_authorization_header(conn) do
     conn
@@ -14,13 +13,7 @@ defmodule CookpodWeb.PageControllerTest do
   end
 
   setup %{conn: conn} do
-    {:ok, user} =
-      Accounts.create_user(%{
-        email: "username@yandex.ru",
-        password: "password",
-        password_confirmation: "password"
-      })
-
+    user = insert(:user)
     %{conn: conn, user: user}
   end
 
@@ -81,7 +74,7 @@ defmodule CookpodWeb.PageControllerTest do
         |> init_test_session(current_user: user)
         |> get(Routes.page_path(conn, :terms))
 
-      assert html_response(conn, 200) =~ "Welcome username@yandex.ru!"
+      assert html_response(conn, 200) =~ "Welcome #{user.email}!"
       assert html_response(conn, 200) =~ "Условия и положения"
       assert conn.assigns[:current_user]
     end

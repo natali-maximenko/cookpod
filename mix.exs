@@ -33,7 +33,7 @@ defmodule Cookpod.MixProject do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(:test), do: ["lib", "test/support", "test/factories"]
   defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
@@ -47,7 +47,9 @@ defmodule Cookpod.MixProject do
       {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.4"},
       {:excoveralls, "~> 0.10", only: :test},
+      {:ex_machina, "~> 2.4", only: :test},
       {:ex_json_schema, "~> 0.5"},
+      {:faker, "~> 0.13", only: :test},
       {:fsm, "~> 0.3.1"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
