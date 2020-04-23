@@ -16,6 +16,7 @@ defmodule CookpodWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug BasicAuth, username: "user", password: "secret"
   end
 
   pipeline :auth do
@@ -39,9 +40,24 @@ defmodule CookpodWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", CookpodWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", CookpodWeb.Api, as: :api do
+    pipe_through :api
+
+    resources "/reciples", RecipleController, only: [:index, :show]
+  end
+
+  scope "/api/swagger" do
+    forward("/", PhoenixSwagger.Plug.SwaggerUI, otp_app: :cookpod, swagger_file: "swagger.json")
+  end
+
+  def swagger_info do
+    %{
+      info: %{
+        version: "0.1.0",
+        title: "Cookpod"
+      }
+    }
+  end
 
   def handle_errors(conn, %{kind: :error, reason: %Phoenix.Router.NoRouteError{}}) do
     conn
