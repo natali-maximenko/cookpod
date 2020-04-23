@@ -54,6 +54,7 @@ defmodule Cookpod.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:phoenix, "~> 1.4.16"},
+      {:phoenix_integration, "~> 0.6", only: :test},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
