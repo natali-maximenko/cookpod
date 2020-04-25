@@ -11,14 +11,15 @@ defmodule CookpodWeb.Api.RecipleControllerTest do
     reciple
   end
 
+  setup %{conn: conn} do
+    conn = with_valid_authorization_header(conn)
+    %{conn: conn}
+  end
+
   describe "index" do
     setup [:create_reciple]
 
     test "lists all reciples", %{conn: conn, swagger_schema: schema} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-
       conn
       |> get(Routes.api_reciple_path(conn, :index))
       |> validate_resp_schema(schema, "ReciplesResponse")
@@ -30,10 +31,6 @@ defmodule CookpodWeb.Api.RecipleControllerTest do
     setup [:create_reciple]
 
     test "get reciple", %{conn: conn, reciple: reciple, swagger_schema: schema} do
-      conn =
-        conn
-        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
-
       conn
       |> get(Routes.api_reciple_path(conn, :show, reciple))
       |> validate_resp_schema(schema, "RecipleResponse")

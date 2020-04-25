@@ -13,22 +13,13 @@ defmodule Cookpod.CatalogTest do
     }
     @invalid_attrs %{description: nil, image: nil, title: nil}
 
-    def reciple_fixture(attrs \\ %{}) do
-      {:ok, reciple} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Catalog.create_reciple()
-
-      reciple
-    end
-
     test "list_reciples/0 returns all reciples" do
-      reciple = reciple_fixture()
+      reciple = insert(:reciple)
       assert Catalog.list_reciples() == [reciple]
     end
 
     test "get_reciple!/1 returns the reciple with given id" do
-      reciple = reciple_fixture()
+      reciple = insert(:reciple)
       assert Catalog.get_reciple!(reciple.id) == reciple
     end
 
@@ -44,32 +35,32 @@ defmodule Cookpod.CatalogTest do
     end
 
     test "publish_reciple/1 updates the reciple state" do
-      reciple = reciple_fixture()
+      reciple = insert(:reciple)
       assert {:ok, %Reciple{} = reciple} = Catalog.publish_reciple(reciple)
       assert reciple.state == "published"
     end
 
     test "update_reciple/2 with valid data updates the reciple" do
-      reciple = reciple_fixture()
+      reciple = insert(:reciple)
       assert {:ok, %Reciple{} = reciple} = Catalog.update_reciple(reciple, @update_attrs)
       assert reciple.description == "some updated description"
       assert reciple.title == "some updated title"
     end
 
     test "update_reciple/2 with invalid data returns error changeset" do
-      reciple = reciple_fixture()
+      reciple = insert(:reciple)
       assert {:error, %Ecto.Changeset{}} = Catalog.update_reciple(reciple, @invalid_attrs)
       assert reciple == Catalog.get_reciple!(reciple.id)
     end
 
     test "delete_reciple/1 deletes the reciple" do
-      reciple = reciple_fixture()
+      reciple = insert(:reciple)
       assert {:ok, %Reciple{}} = Catalog.delete_reciple(reciple)
       assert_raise Ecto.NoResultsError, fn -> Catalog.get_reciple!(reciple.id) end
     end
 
     test "change_reciple/1 returns a reciple changeset" do
-      reciple = reciple_fixture()
+      reciple = insert(:reciple)
       assert %Ecto.Changeset{} = Catalog.change_reciple(reciple)
     end
   end

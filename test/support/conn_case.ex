@@ -21,10 +21,24 @@ defmodule CookpodWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
+      import Plug.Test
+      import Cookpod.Factory
       alias CookpodWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
       @endpoint CookpodWeb.Endpoint
+
+      # Authorize function
+      def with_valid_authorization_header(conn) do
+        conn
+        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
+      end
+
+      def as_user(conn, %Cookpod.Accounts.User{} = user) do
+        conn
+        |> put_req_header("authorization", "Basic dXNlcjpzZWNyZXQ=")
+        |> init_test_session(current_user: user)
+      end
     end
   end
 
