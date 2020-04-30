@@ -12,9 +12,21 @@ defmodule Cookpod.Catalog do
   def delete_reciple(reciple), do: RecipleQueries.delete(reciple)
   def change_reciple(reciple), do: RecipleQueries.change(reciple)
 
+  import Ecto.Query
+
+  alias Cookpod.Catalog.Ingredient
+  alias Cookpod.Catalog.Product
   alias Cookpod.Repo
 
-  alias Cookpod.Catalog.Product
+  def total_reciple_calories(reciple) do
+    q =
+      from i in Ingredient,
+        join: p in assoc(i, :product),
+        where: i.reciple_id == ^reciple.id,
+        select: fragment("SUM (amount * (fats * 9 + carbs * 4 + proteins * 4)) / 100")
+
+    Repo.one(q)
+  end
 
   @doc """
   Returns the list of products.
@@ -109,8 +121,6 @@ defmodule Cookpod.Catalog do
   def change_product(%Product{} = product) do
     Product.changeset(product, %{})
   end
-
-  alias Cookpod.Catalog.Ingredient
 
   @doc """
   Returns the list of ingredients.
