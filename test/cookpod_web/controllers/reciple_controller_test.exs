@@ -1,6 +1,5 @@
 defmodule CookpodWeb.RecipleControllerTest do
   use CookpodWeb.ConnCase
-  import Plug.Test
 
   @create_attrs %{description: "some description", title: "some title"}
   @update_attrs %{

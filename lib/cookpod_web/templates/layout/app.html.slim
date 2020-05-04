@@ -27,7 +27,7 @@ html lang="en"
         = if @conn.assigns[:current_user] do
           h1 = "Welcome #{@conn.assigns[:current_user].email}!" 
         - else
-          h1 You are not logged in  
-      = render @view_module, @view_template, assigns
+          h1 You are not logged in
+      = @inner_content
 
     script type="text/javascript" src="#{Routes.static_path(@conn, "/js/app.js")}"

@@ -1,6 +1,5 @@
 defmodule CookpodWeb.PageControllerTest do
   use CookpodWeb.ConnCase
-  import Plug.Test
 
   def with_invalid_authorization_header(conn) do
     conn

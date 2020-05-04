@@ -53,15 +53,15 @@ defmodule Cookpod.MixProject do
       {:fsm, "~> 0.3.1"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:phoenix, "~> 1.4.16"},
+      {:phoenix, "~> 1.5.0"},
       {:phoenix_integration, "~> 0.6", only: :test},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_slime, "~> 0.13.1"},
       {:phoenix_swagger, "~> 0.8"},
-      {:plug_cowboy, "~> 2.0"},
+      {:plug_cowboy, "~> 2.1"},
       {:postgrex, ">= 0.0.0"}
     ]
   end
