@@ -3,13 +3,16 @@ defmodule Cookpod.Catalog.Reciple do
   use Arc.Ecto.Schema
   import Ecto.Changeset
 
-  alias Cookpod.Catalog.Image
+  alias Cookpod.Catalog.{Image, Ingredient}
 
   schema "reciples" do
     field :description, :string
     field :image, Image.Type
     field :title, :string
     field :state, :string
+
+    has_many :ingridients, Ingredient
+    has_many :products, through: [:ingridients, :product]
 
     timestamps()
   end

@@ -1,0 +1,17 @@
+h1 Listing Ingredients
+
+table
+  thead
+    tr
+      th Amount
+      th
+  tbody
+    = for ingredient <- @ingredients do
+      tr
+        td= ingredient.amount
+        td class="text-right"
+          = link "Show", to: Routes.ingredient_path(@conn, :show, ingredient)
+          = link "Edit", to: Routes.ingredient_path(@conn, :edit, ingredient)
+          = link "Delete", to: Routes.ingredient_path(@conn, :delete, ingredient), method: :delete, data: [confirm: "Are you sure?"]
+
+span= link "New Ingredient", to: Routes.ingredient_path(@conn, :new)

@@ -37,6 +37,8 @@ defmodule CookpodWeb.Router do
     get "/terms", PageController, :terms
     resources "/reciples", RecipleController
     put "/reciples/:id/publish", RecipleController, :publish
+    resources "/products", ProductController
+    resources "/ingredients", IngredientController
   end
 
   # Other scopes may use custom stacks.

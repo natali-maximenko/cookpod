@@ -20,8 +20,8 @@ defmodule CookpodWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      use Phoenix.ConnTest
-      import Plug.Test
+      import Plug.Conn
+      import Phoenix.ConnTest
       import Cookpod.Factory
       alias CookpodWeb.Router.Helpers, as: Routes
 

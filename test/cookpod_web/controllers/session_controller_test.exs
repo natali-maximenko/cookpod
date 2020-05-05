@@ -1,6 +1,5 @@
 defmodule CookpodWeb.SessinControllerTest do
   use CookpodWeb.ConnCase
-  import Plug.Test
 
   @invalid_params %{
     email: "username",

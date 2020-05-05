@@ -39,7 +39,8 @@ defmodule CookpodWeb.RecipleController do
 
   def show(conn, %{"id" => id}) do
     reciple = Catalog.get_reciple!(id)
-    render(conn, "show.html", reciple: reciple)
+    total = Catalog.total_reciple_calories(reciple)
+    render(conn, "show.html", reciple: reciple, total: total)
   end
 
   def edit(conn, %{"id" => id}) do
