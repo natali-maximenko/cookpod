@@ -11,7 +11,7 @@ RUN apk update && apk --no-cache --update add nodejs npm git build-base
 
 COPY mix.* ./
 
-RUN mix do deps.get --only prod, compile
+RUN mix do deps.get, compile
 
 COPY . .
 

@@ -1,7 +1,7 @@
 import Config
 
 host = System.fetch_env!("COOKPOD_HOST")
-port = System.fetch_env!("PORT") |> String.to_integer()
+port = System.get_env("PORT", "4001") |> String.to_integer()
 secret_key_base = System.fetch_env!("SECRET_KEY_BASE")
 live_view_salt = System.fetch_env!("LIVE_VIEW_SALT")
 
@@ -12,9 +12,8 @@ db_hostname = System.fetch_env!("DB_HOSTNAME")
 db_pool_size = System.get_env("DB_POOL_SIZE", "15") |> String.to_integer()
 
 config :cookpod, CookpodWeb.Endpoint,
-  http: [:inet6, port: port],
+  http: [port: port],
   url: [host: host, port: port],
-  cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: secret_key_base,
   live_view: [signing_salt: live_view_salt],
   server: true
