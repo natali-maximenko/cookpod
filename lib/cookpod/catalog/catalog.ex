@@ -5,6 +5,7 @@ defmodule Cookpod.Catalog do
   alias Cookpod.Catalog.RecipleQueries
 
   def list_reciples, do: RecipleQueries.list()
+  def list_reciples_by(ids), do: RecipleQueries.list_by(ids)
   def get_reciple!(id), do: RecipleQueries.get!(id)
   def create_reciple(attrs), do: RecipleQueries.create(attrs)
   def update_reciple(reciple, attrs), do: RecipleQueries.update(reciple, attrs)

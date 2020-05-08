@@ -1,4 +1,5 @@
 defmodule Cookpod.Catalog.RecipleQueries do
+  import Ecto.Query
   alias Cookpod.Catalog.Reciple
   alias Cookpod.Catalog.RecipleFsm
   alias Cookpod.Repo
@@ -7,6 +8,10 @@ defmodule Cookpod.Catalog.RecipleQueries do
   def get!(id), do: Repo.get!(Reciple, id)
   def change(%Reciple{} = reciple), do: Reciple.changeset(reciple, %{})
   def delete(%Reciple{} = reciple), do: Repo.delete(reciple)
+
+  def list_by(ids) do
+    Repo.all(from r in Reciple, where: r.id in ^ids)
+  end
 
   def create(attrs \\ %{}) do
     %Reciple{state: init_state()}

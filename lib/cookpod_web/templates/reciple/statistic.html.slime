@@ -1,0 +1,15 @@
+h1 Reciple visits statistic
+
+table
+  thead
+    tr
+      th Title
+      th Visits
+      th
+  tbody
+    = for reciple <- @reciples do
+      tr
+        td= reciple.title
+        td= @statistic[Integer.to_string(reciple.id)]
+
+span= link "Reciples", to: Routes.reciple_path(@conn, :index)
