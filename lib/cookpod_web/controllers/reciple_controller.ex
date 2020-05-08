@@ -3,6 +3,7 @@ defmodule CookpodWeb.RecipleController do
 
   alias Cookpod.Catalog
   alias Cookpod.Catalog.Reciple
+  alias Cookpod.VisitCounter
 
   def index(conn, _params) do
     reciples = Catalog.list_reciples()
@@ -37,9 +38,17 @@ defmodule CookpodWeb.RecipleController do
     end
   end
 
+  def statistic(conn, _params) do
+    stat = VisitCounter.statistic()
+    ids = Map.keys(stat)
+    reciples = Catalog.list_reciples_by(ids)
+    render(conn, "statistic.html", statistic: stat, reciples: reciples)
+  end
+
   def show(conn, %{"id" => id}) do
     reciple = Catalog.get_reciple!(id)
     total = Catalog.total_reciple_calories(reciple)
+    VisitCounter.visit(id)
     render(conn, "show.html", reciple: reciple, total: total)
   end
 

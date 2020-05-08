@@ -11,7 +11,8 @@ defmodule Cookpod.Application do
     children = [
       {Phoenix.PubSub, name: Cookpod.PubSub},
       Cookpod.Repo,
-      CookpodWeb.Endpoint
+      CookpodWeb.Endpoint,
+      Cookpod.VisitCounter
       # Starts a worker by calling: Cookpod.Worker.start_link(arg)
       # {Cookpod.Worker, arg},
     ]
