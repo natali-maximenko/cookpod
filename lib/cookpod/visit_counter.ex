@@ -4,15 +4,15 @@ defmodule Cookpod.VisitCounter do
   # Client
 
   def start_link(_opts) do
-    GenServer.start_link(__MODULE__, %{}, name: :counter)
+    GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
   end
 
   def visit(reciple_id) do
-    GenServer.cast(:counter, {:visit, reciple_id})
+    GenServer.cast(__MODULE__, {:visit, reciple_id})
   end
 
   def statistic do
-    GenServer.call(:counter, :statistic)
+    GenServer.call(__MODULE__, :statistic)
   end
 
   # Server (callbacks)
