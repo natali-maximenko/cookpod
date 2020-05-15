@@ -12,7 +12,8 @@ defmodule Cookpod.Application do
       {Phoenix.PubSub, name: Cookpod.PubSub},
       Cookpod.Repo,
       CookpodWeb.Endpoint,
-      Cookpod.VisitCounter
+      Cookpod.VisitCounter,
+      Cookpod.Telemetry
       # Starts a worker by calling: Cookpod.Worker.start_link(arg)
       # {Cookpod.Worker, arg},
     ]

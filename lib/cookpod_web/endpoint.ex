@@ -10,9 +10,15 @@ defmodule CookpodWeb.Endpoint do
     signing_salt: "j/6L6uCc"
   ]
 
+  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+
   socket "/socket", CookpodWeb.UserSocket,
     websocket: true,
     longpoll: false
+
+  plug Phoenix.LiveDashboard.RequestLogger,
+    param_key: "request_logger",
+    cookie_key: "request_logger"
 
   # Serve at "/" the static files from "priv/static" directory.
   #
