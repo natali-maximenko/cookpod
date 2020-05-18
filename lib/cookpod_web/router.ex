@@ -1,6 +1,7 @@
 defmodule CookpodWeb.Router do
   use CookpodWeb, :router
   use Plug.ErrorHandler
+  import Phoenix.LiveDashboard.Router
 
   alias CookpodWeb.Plugs.Auth
   alias CookpodWeb.Plugs.BasicAuth
@@ -47,6 +48,11 @@ defmodule CookpodWeb.Router do
     pipe_through :api
 
     resources "/reciples", RecipleController, only: [:index, :show]
+  end
+
+  scope "/" do
+    pipe_through [:browser]
+    live_dashboard("/dashboard", metrics: Cookpod.Telemetry)
   end
 
   scope "/api/swagger" do
